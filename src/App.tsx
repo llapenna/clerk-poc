@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -5,12 +7,14 @@ import "./App.css";
 import {
   OrganizationSwitcher,
   SignOutButton,
+  useAuth,
   useOrganization,
   useOrganizationList,
   useUser,
 } from "@clerk/react-router";
 
 function App() {
+  const { getToken } = useAuth();
   const { user } = useUser();
   const { organization } = useOrganization();
   const list = useOrganizationList();
@@ -18,11 +22,16 @@ function App() {
   const [count, setCount] = useState(0);
   console.log({ user, organization, organizations: list });
 
+  const handleClick = async () => {
+    const token = await getToken();
+    return fetch("http://localhost:3000/protected", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  };
+
   return (
     <>
-      <button onClick={() => fetch("http://localhost:3000/protected")}>
-        test
-      </button>
+      <button onClick={handleClick}>test</button>
       <button onClick={() => fetch("http://localhost:3000/redirect")}>
         redirect
       </button>

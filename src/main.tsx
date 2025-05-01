@@ -1,3 +1,4 @@
+import React from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
@@ -26,14 +27,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <ClerkProvider
         publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
-        // signInUrl="/sign-in"
-        // afterSignOutUrl={"https://concourse.co"}
-        // signInFallbackRedirectUrl={"/"}
-        // signUpFallbackRedirectUrl={"/"}
-        // signInForceRedirectUrl={"/sign-in"}
         signInForceRedirectUrl={"/"}
-        // signInUrl="/sign-in"
-        // signUpUrl="/sign-up"
       >
         <Routes>
           <Route path="/" element={<ProtectedRoute />}>
@@ -46,15 +40,6 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/v3/*" element={<App />} />
             <Route path="/v3/test" element={<p>test v3</p>} />
           </Route>
-          {/* <Route
-            path="*"
-            element={
-              <ProtectedRoute>
-                <App />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/auth" element={<SignInButton />} /> */}
         </Routes>
       </ClerkProvider>
     </BrowserRouter>
