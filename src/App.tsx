@@ -18,15 +18,28 @@ function App() {
   const [count, setCount] = useState(0);
   console.log({ user, organization, organizations: list });
 
-  const id = "org_2urwL9vlo54UQgKXzw7c6QBxA9O";
-
   return (
     <>
+      <button onClick={() => fetch("http://localhost:3000/protected")}>
+        test
+      </button>
+      <button onClick={() => fetch("http://localhost:3000/redirect")}>
+        redirect
+      </button>
+      <button
+        onClick={() =>
+          fetch("http://localhost:3000/post", {
+            method: "POST",
+            body: JSON.stringify({
+              name: "John Doe",
+            }),
+          })
+        }
+      >
+        post
+      </button>
       <SignOutButton />
       <OrganizationSwitcher hidePersonal></OrganizationSwitcher>
-      <button onClick={() => list?.setActive?.({ organization: id })}>
-        change
-      </button>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

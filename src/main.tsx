@@ -2,20 +2,13 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import {
-  BrowserRouter,
-  Navigate,
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import {
   ClerkProvider,
   RedirectToSignIn,
   SignedIn,
   SignedOut,
-  SignInButton,
 } from "@clerk/react-router";
 
 const ProtectedRoute = () => (
